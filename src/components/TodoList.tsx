@@ -70,17 +70,15 @@ const TodoList: React.FC = () => {
               Delete
             </button>
             <button
-              className={`bg-${todo.status === "pending" ? "gray" : "gree"}-500 py-1 px-2 rounded hover:bg-${
-                todo.status === "pending" ? "gray" : "gree"
-              }-600`}
+              className={`py-1 px-2 rounded`}
               onClick={() => handleToggle(todo.id, todo.status)}
             >
               {todo.status === "pending" ? "Mark Completed" : "Mark Pending"}
             </button>
             <span
               className={`float-right text-white ${
-                todo.status === "pending" ? "bg-yellow" : "bg-green"
-              }-500 px-2 py-1 rounded`}
+                todo.status === "pending" ? "bg-yellow-500" : "bg-green-500"
+              } px-2 py-1 rounded`}
             >
               {todo.status}
             </span>
