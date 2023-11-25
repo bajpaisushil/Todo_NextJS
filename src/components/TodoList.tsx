@@ -76,7 +76,7 @@ const TodoList: React.FC = () => {
               {todo.status === "pending" ? "Mark Completed" : "Mark Pending"}
             </button>
             <span
-              className={`float-right text-white ${
+              className={`float-right text-black ${
                 todo.status === "pending" ? "bg-yellow-500" : "bg-green-500"
               } px-2 py-1 rounded`}
             >
