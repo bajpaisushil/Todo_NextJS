@@ -1,18 +1,11 @@
 "use client"
 
-import {
-  Badge,
-  Box,
-  Heading,
-  SimpleGrid,
-  Text,
-  useToast,
-} from "@chakra-ui/react";
+
 import React, { useEffect } from "react";
 import useAuth from "../../hooks/useAuth";
 import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { db } from "../../firebase";
-import { FaToggleOff, FaToggleOn, FaTrash } from "react-icons/fa";
+import { showToast } from 'react-next-toast';
 import { deleteTodo, toggleTodoStatus } from "../../api/todo";
 
 interface Todo {
@@ -26,8 +19,6 @@ const TodoList: React.FC = () => {
   const [todos, setTodos] = React.useState<Todo[]>([]);
 
   const { user } = useAuth();
-  const toast = useToast();
-
   const refreshData = () => {
     if (!user) {
       setTodos([]);
@@ -52,17 +43,14 @@ const TodoList: React.FC = () => {
   const handleTodoDelete = async (id: string) => {
     if (confirm("Are you sure you want to delete this todo?")) {
       deleteTodo(id);
-      toast({ title: "Todo deleted successfully", status: "success" });
+      showToast.error("Todo deleted successfully");
     }
   };
 
   const handleToggle = async (id: string, status: string) => {
     const newStatus = status === "completed" ? "pending" : "completed";
     await toggleTodoStatus({ docId: id, status: newStatus });
-    toast({
-      title: `Todo marked ${newStatus}`,
-      status: newStatus === "completed" ? "success" : "warning",
-    });
+    showToast.info(`Todo marked ${newStatus}`)
   };
 
   return (
