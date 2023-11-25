@@ -1,35 +1,25 @@
 "use client"
 
 import React from "react";
-import {
-  Box,
-  Input,
-  Button,
-  Textarea,
-  Stack,
-  Select,
-  useToast,
-} from "@chakra-ui/react";
 import useAuth from "../../hooks/useAuth";
 import { addTodo } from "../../api/todo";
+import { showToast } from 'react-next-toast';
+
+
 const AddTodo = () => {
   const [title, setTitle] = React.useState("");
   const [description, setDescription] = React.useState("");
   const [status, setStatus] = React.useState("pending");
   const [isLoading, setIsLoading] = React.useState(false);
 
-  const toast = useToast();
 
   const { isLoggedIn, user } = useAuth();
 
   const handleTodoCreate = async () => {
+    console.log(isLoggedIn);
+    
     if (!isLoggedIn) {
-      toast({
-        title: "You must be logged in to create a todo",
-        status: "error",
-        duration: 9000,
-        isClosable: true,
-      });
+      showToast.error("You must be logged in to create a todo");
       return;
     }
     setIsLoading(true);
@@ -46,11 +36,11 @@ const AddTodo = () => {
     setDescription("");
     setStatus("pending");
 
-    toast({ title: "Todo created successfully", status: "success" });
+    showToast.success("Todo created successfully");
   };
 
   return (
-    <div className="w-fit mx-auto px-6 mt-5 p-4 bg-blue-200 rounded-lg shadow-md">
+    <div className="w-fit mx-auto px-6 mt-[1rem] p-4 bg-blue-200 rounded-lg shadow-md">
       <div className="flex flex-col">
         <input
           type="text"

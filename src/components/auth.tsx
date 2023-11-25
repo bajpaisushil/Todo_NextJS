@@ -26,11 +26,11 @@ const Auth = () => {
   };
 
   return (
-    <div className="fixed top-5 right-5">
+    <div className="flex justify-between m-2">
       {isLoggedIn ? (
         <>
-          <div className="text-white p-1 mr-2 bg-blue-500 rounded-md my-1">{user.email}</div>
-          <button onClick={() => auth.signOut()} className="text-red-500 outline rounded-md p-1 hover:bg-red-500 hover:text-white outline-2 outline-red-500">
+          <div className="text-white p-1 bg-blue-500 rounded-md">{user.email}</div>
+          <button onClick={() => auth.signOut()} className="text-red-500 outline rounded-md p-[4px] hover:bg-red-500 hover:text-white outline-2 outline-red-500">
             Logout
           </button>
         </>
